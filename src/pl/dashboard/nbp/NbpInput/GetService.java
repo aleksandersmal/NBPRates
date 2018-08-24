@@ -14,27 +14,22 @@ import org.xml.sax.InputSource;
 public class GetService {
 
 	public void getXmlFile(String date) {
-		try {
-			URL url = new URL("http://www.nbp.pl/kursy/xml/lastA.xml" + date);
-			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			Document document = docBuilder.parse(new InputSource(url.openStream()));
-			document.getDocumentElement().normalize();
-			System.out.println(document);
-			System.out.println("Root element :" + document.getDocumentElement().getNodeName());
-			NodeList nList = document.getElementsByTagName("");
-			System.out.println("----------------------------");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-				Node nNode = nList.item(temp);
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-				}
+		DateValidator validator = new DateValidator();
+		if (validator.validateInputDate(date)) {
+			try {
+				URL url = new URL("http://api.nbp.pl/api/exchangerates/tables/a/" + date +"/?format=xml");
+				DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+				Document document = docBuilder.parse(new InputSource(url.openStream()));
+				document.getDocumentElement().normalize();
+				System.out.println(document);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+
+		} else {
+			System.out.println("Date You entered is not valid. Proper date Input: YYYY-MM-DD");
+
 		}
 
 	}
