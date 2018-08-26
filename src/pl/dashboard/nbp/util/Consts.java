@@ -2,7 +2,7 @@ package pl.dashboard.nbp.util;
 
 public final class Consts {
 
-	public static final String MINIMUM_DATE = "2004-12-13";
+	public static final String MINIMUM_DATE = "2002-01-02";
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
 
 	public static final String TOO_MUCH_ARGS = "You entered too much arguments:";

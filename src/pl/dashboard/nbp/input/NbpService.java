@@ -41,7 +41,6 @@ public class NbpService {
 
 		}
 	}
-
 	private Document getXmlFile(String date) {
 		try {
 			URL url = new URL(Consts.TABLE_URL + date + Consts.XML_FORMAT);
