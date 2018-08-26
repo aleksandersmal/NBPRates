@@ -1,13 +1,15 @@
 package pl.dashboard.nbp;
 
 
-import pl.dashboard.nbp.NbpInput.GetService;
+import pl.dashboard.nbp.input.NbpService;
 
 public class MainClass {
 
+
 	public static void main(String[] args) {
-		GetService service = new GetService();
-		service.getXmlFile("2013-12-12");
+		NbpService service = new NbpService();
+		String[] args1 = {"2009-12-12"};
+		service.getTable(args1);
 	}
 
 }
